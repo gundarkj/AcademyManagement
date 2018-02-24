@@ -7,18 +7,28 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using projet_dot_net.Model;
+using projet_dot_net.Repository;
 
 namespace projet_dot_net.Controllers
 {
     public class ClassroomsController : Controller
     {
+
         private AcademyModel db = new AcademyModel();
+        private IClassroomsRepository _classroomsRepository;
+        public ClassroomsController()
+        {
+            this._classroomsRepository = new ClassroomsRepository(new AcademyModel());
+        }
+
 
         // GET: Classrooms
         public ActionResult Index()
         {
-            var classrooms = db.Classrooms.Include(c => c.Establishments).Include(c => c.Users).Include(c => c.Years);
-            return View(classrooms.ToList());
+            var classrooms = from classroom in _classroomsRepository.GetClassroom()
+                         select classroom;
+            //var pupils2=pupils.Include(p => p.Classrooms).Include(p => p.Levels).Include(p => p.Tutors);
+            return View(classrooms);
         }
 
         // GET: Classrooms/Details/5
@@ -28,7 +38,8 @@ namespace projet_dot_net.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Classrooms classrooms = db.Classrooms.Find(id);
+            Classrooms classrooms= _classroomsRepository.GetClassroomByID(id);
+           // Classrooms classrooms = db.Classrooms.Find(id);
             if (classrooms == null)
             {
                 return HttpNotFound();
@@ -39,9 +50,9 @@ namespace projet_dot_net.Controllers
         // GET: Classrooms/Create
         public ActionResult Create()
         {
-            ViewBag.Establishment_Id = new SelectList(db.Establishments, "Id", "Name");
-            ViewBag.User_Id = new SelectList(db.Users, "Id", "UserName");
-            ViewBag.Year_Id = new SelectList(db.Years, "Id", "Id");
+            ViewBag.Establishment_Id = new SelectList(_classroomsRepository.GetEstablishments(), "Id", "Name");
+            ViewBag.User_Id = new SelectList(_classroomsRepository.GetUsers(), "Id", "UserName");
+            ViewBag.Year_Id = new SelectList(_classroomsRepository.GetYears(), "Id", "Year");
             return View();
         }
 
@@ -55,15 +66,17 @@ namespace projet_dot_net.Controllers
             if (ModelState.IsValid)
             {
                 classrooms.Id = Guid.NewGuid();
-                db.Classrooms.Add(classrooms);
-                db.SaveChanges();
+                _classroomsRepository.InsertClassroom(classrooms);
+                _classroomsRepository.Save();
+                //db.Classrooms.Add(classrooms);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Establishment_Id = new SelectList(db.Establishments, "Id", "Name", classrooms.Establishment_Id);
-            ViewBag.User_Id = new SelectList(db.Users, "Id", "UserName", classrooms.User_Id);
-            ViewBag.Year_Id = new SelectList(db.Years, "Id", "Id", classrooms.Year_Id);
-            return View(classrooms);
+            ViewBag.Establishment_Id = new SelectList(_classroomsRepository.GetEstablishments(), "Id", "Name");
+            ViewBag.User_Id = new SelectList(_classroomsRepository.GetUsers(), "Id", "UserName");
+            ViewBag.Year_Id = new SelectList(_classroomsRepository.GetYears(), "Id", "Year");
+            return View();
         }
 
         // GET: Classrooms/Edit/5
@@ -73,15 +86,15 @@ namespace projet_dot_net.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Classrooms classrooms = db.Classrooms.Find(id);
+            Classrooms classrooms = _classroomsRepository.GetClassroomByID(id);
             if (classrooms == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Establishment_Id = new SelectList(db.Establishments, "Id", "Name", classrooms.Establishment_Id);
-            ViewBag.User_Id = new SelectList(db.Users, "Id", "UserName", classrooms.User_Id);
-            ViewBag.Year_Id = new SelectList(db.Years, "Id", "Id", classrooms.Year_Id);
-            return View(classrooms);
+            ViewBag.Establishment_Id = new SelectList(_classroomsRepository.GetEstablishments(), "Id", "Name");
+            ViewBag.User_Id = new SelectList(_classroomsRepository.GetUsers(), "Id", "UserName");
+            ViewBag.Year_Id = new SelectList(_classroomsRepository.GetYears(), "Id", "Year");
+            return View();
         }
 
         // POST: Classrooms/Edit/5
@@ -93,14 +106,16 @@ namespace projet_dot_net.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(classrooms).State = EntityState.Modified;
-                db.SaveChanges();
+                _classroomsRepository.UpdateClassroom(classrooms);
+                _classroomsRepository.Save();
+               // db.Entry(classrooms).State = EntityState.Modified;
+               // db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Establishment_Id = new SelectList(db.Establishments, "Id", "Name", classrooms.Establishment_Id);
-            ViewBag.User_Id = new SelectList(db.Users, "Id", "UserName", classrooms.User_Id);
-            ViewBag.Year_Id = new SelectList(db.Years, "Id", "Id", classrooms.Year_Id);
-            return View(classrooms);
+            ViewBag.Establishment_Id = new SelectList(_classroomsRepository.GetEstablishments(), "Id", "Name");
+            ViewBag.User_Id = new SelectList(_classroomsRepository.GetUsers(), "Id", "UserName");
+            ViewBag.Year_Id = new SelectList(_classroomsRepository.GetYears(), "Id", "Year");
+            return View();
         }
 
         // GET: Classrooms/Delete/5
@@ -110,7 +125,7 @@ namespace projet_dot_net.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Classrooms classrooms = db.Classrooms.Find(id);
+            Classrooms classrooms = _classroomsRepository.GetClassroomByID(id);
             if (classrooms == null)
             {
                 return HttpNotFound();
@@ -123,9 +138,11 @@ namespace projet_dot_net.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Classrooms classrooms = db.Classrooms.Find(id);
-            db.Classrooms.Remove(classrooms);
-            db.SaveChanges();
+            Classrooms classrooms = _classroomsRepository.GetClassroomByID(id);
+            _classroomsRepository.DeleteClassroom(id);
+            _classroomsRepository.Save();
+            //db.Classrooms.Remove(classrooms);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 

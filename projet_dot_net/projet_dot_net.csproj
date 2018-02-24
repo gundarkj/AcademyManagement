@@ -158,6 +158,7 @@
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\TutorsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="Controllers\YearsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,7 +215,9 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AcademyRepository.cs" />
+    <Compile Include="Repository\ClassroomsRepository.cs" />
     <Compile Include="Repository\IAcademyRepository.cs" />
+    <Compile Include="Repository\IClassroomsRepository.cs" />
     <Compile Include="Repository\IPupilsRepository.cs" />
     <Compile Include="Repository\ITutorsRepository.cs" />
     <Compile Include="Repository\PupilsRepository.cs" />
@@ -309,6 +312,11 @@
     <Content Include="Views\Results\Details.cshtml" />
     <Content Include="Views\Results\Edit.cshtml" />
     <Content Include="Views\Results\Index.cshtml" />
+    <Content Include="Views\Years\Create.cshtml" />
+    <Content Include="Views\Years\Delete.cshtml" />
+    <Content Include="Views\Years\Details.cshtml" />
+    <Content Include="Views\Years\Edit.cshtml" />
+    <Content Include="Views\Years\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
