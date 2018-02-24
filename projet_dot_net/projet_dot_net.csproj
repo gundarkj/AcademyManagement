@@ -216,8 +216,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\AcademyRepository.cs" />
     <Compile Include="Repository\ClassroomsRepository.cs" />
+    <Compile Include="Repository\EstablishmentsRepository.cs" />
     <Compile Include="Repository\IAcademyRepository.cs" />
     <Compile Include="Repository\IClassroomsRepository.cs" />
+    <Compile Include="Repository\IEstablishmentsRepository.cs" />
     <Compile Include="Repository\IPupilsRepository.cs" />
     <Compile Include="Repository\ITutorsRepository.cs" />
     <Compile Include="Repository\PupilsRepository.cs" />

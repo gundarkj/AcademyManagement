@@ -7,18 +7,24 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using projet_dot_net.Model;
+using projet_dot_net.Repository;
 
 namespace projet_dot_net.Controllers
 {
     public class EstablishmentsController : Controller
     {
-        private AcademyModel db = new AcademyModel();
+
+        private IEstablishmentsRepository _establishmentRepository;
+        public EstablishmentsController()
+        {
+            this._establishmentRepository = new EstablishmentsRepository(new AcademyModel());
+        }
 
         // GET: Establishments
         public ActionResult Index()
         {
-            var establishments = db.Establishments.Include(e => e.Academies).Include(e => e.Users);
-            return View(establishments.ToList());
+            var establishments = _establishmentRepository.GetEstablishments();
+            return View(establishments);
         }
 
         // GET: Establishments/Details/5
@@ -28,7 +34,8 @@ namespace projet_dot_net.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Establishments establishments = db.Establishments.Find(id);
+            Establishments establishments = _establishmentRepository.GetEstablishmentByID(id);
+            //Establishments establishments = db.Establishments.Find(id);
             if (establishments == null)
             {
                 return HttpNotFound();
@@ -39,8 +46,8 @@ namespace projet_dot_net.Controllers
         // GET: Establishments/Create
         public ActionResult Create()
         {
-            ViewBag.Academie_Id = new SelectList(db.Academies, "Id", "Name");
-            ViewBag.User_Id = new SelectList(db.Users, "Id", "UserName");
+            ViewBag.Academie_Id = new SelectList(_establishmentRepository.GetAcademies(), "Id", "Name");
+            ViewBag.User_Id = new SelectList(_establishmentRepository.GetUsers(), "Id", "UserName");
             return View();
         }
 
@@ -54,14 +61,16 @@ namespace projet_dot_net.Controllers
             if (ModelState.IsValid)
             {
                 establishments.Id = Guid.NewGuid();
-                db.Establishments.Add(establishments);
-                db.SaveChanges();
+                _establishmentRepository.InsertEstablishment(establishments);
+                _establishmentRepository.Save();
+                //db.Establishments.Add(establishments);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Academie_Id = new SelectList(db.Academies, "Id", "Name", establishments.Academie_Id);
-            ViewBag.User_Id = new SelectList(db.Users, "Id", "UserName", establishments.User_Id);
-            return View(establishments);
+            ViewBag.Academie_Id = new SelectList(_establishmentRepository.GetAcademies(), "Id", "Name");
+            ViewBag.User_Id = new SelectList(_establishmentRepository.GetUsers(), "Id", "UserName");
+            return View();
         }
 
         // GET: Establishments/Edit/5
@@ -71,14 +80,15 @@ namespace projet_dot_net.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Establishments establishments = db.Establishments.Find(id);
+            Establishments establishments = _establishmentRepository.GetEstablishmentByID(id);
+           // Establishments establishments = db.Establishments.Find(id);
             if (establishments == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Academie_Id = new SelectList(db.Academies, "Id", "Name", establishments.Academie_Id);
-            ViewBag.User_Id = new SelectList(db.Users, "Id", "UserName", establishments.User_Id);
-            return View(establishments);
+            ViewBag.Academie_Id = new SelectList(_establishmentRepository.GetAcademies(), "Id", "Name");
+            ViewBag.User_Id = new SelectList(_establishmentRepository.GetUsers(), "Id", "UserName");
+            return View();
         }
 
         // POST: Establishments/Edit/5
@@ -90,13 +100,15 @@ namespace projet_dot_net.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(establishments).State = EntityState.Modified;
-                db.SaveChanges();
+                _establishmentRepository.UpdateEstablishment(establishments);
+                _establishmentRepository.Save();
+                //db.Entry(establishments).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Academie_Id = new SelectList(db.Academies, "Id", "Name", establishments.Academie_Id);
-            ViewBag.User_Id = new SelectList(db.Users, "Id", "UserName", establishments.User_Id);
-            return View(establishments);
+            ViewBag.Academie_Id = new SelectList(_establishmentRepository.GetAcademies(), "Id", "Name");
+            ViewBag.User_Id = new SelectList(_establishmentRepository.GetUsers(), "Id", "UserName");
+            return View();
         }
 
         // GET: Establishments/Delete/5
@@ -106,7 +118,7 @@ namespace projet_dot_net.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Establishments establishments = db.Establishments.Find(id);
+            Establishments establishments = _establishmentRepository.GetEstablishmentByID(id);
             if (establishments == null)
             {
                 return HttpNotFound();
@@ -119,9 +131,7 @@ namespace projet_dot_net.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Establishments establishments = db.Establishments.Find(id);
-            db.Establishments.Remove(establishments);
-            db.SaveChanges();
+            _establishmentRepository.DeleteEstablishment(id);
             return RedirectToAction("Index");
         }
 
@@ -129,7 +139,7 @@ namespace projet_dot_net.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _establishmentRepository.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -14,8 +14,6 @@ namespace projet_dot_net.Controllers
     public class PupilsController : Controller
     {
 
-
-        private AcademyModel db = new AcademyModel();
         private IPupilsRepository _pupilRepository;
         public PupilsController()
         {
@@ -148,8 +146,6 @@ namespace projet_dot_net.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
 
-            Pupils pupils = _pupilRepository.GetPupilByID(id);
-            // Pupils pupils = db.Pupils.Find(id);
             _pupilRepository.DeletePupil(id);
             _pupilRepository.Save();
             //db.Pupils.Remove(pupils);
@@ -161,7 +157,7 @@ namespace projet_dot_net.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _pupilRepository.Dispose();
             }
             base.Dispose(disposing);
         }

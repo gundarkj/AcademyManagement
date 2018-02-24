@@ -14,7 +14,6 @@ namespace projet_dot_net.Controllers
     public class ClassroomsController : Controller
     {
 
-        private AcademyModel db = new AcademyModel();
         private IClassroomsRepository _classroomsRepository;
         public ClassroomsController()
         {
@@ -138,7 +137,7 @@ namespace projet_dot_net.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Classrooms classrooms = _classroomsRepository.GetClassroomByID(id);
+            //Classrooms classrooms = _classroomsRepository.GetClassroomByID(id);
             _classroomsRepository.DeleteClassroom(id);
             _classroomsRepository.Save();
             //db.Classrooms.Remove(classrooms);
@@ -150,7 +149,7 @@ namespace projet_dot_net.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _classroomsRepository.Dispose();
             }
             base.Dispose(disposing);
         }

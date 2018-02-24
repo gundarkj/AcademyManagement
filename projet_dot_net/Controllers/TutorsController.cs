@@ -13,9 +13,6 @@ namespace projet_dot_net.Controllers
 {
     public class TutorsController : Controller
     {
-
-
-        private AcademyModel db = new AcademyModel();
         private ITutorsRepository _tutorRepository;
         public TutorsController()
         {
@@ -128,7 +125,6 @@ namespace projet_dot_net.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Tutors tutors = _tutorRepository.GetTutorByID(id);
             _tutorRepository.DeleteTutor(id);
             _tutorRepository.Save();
             //Tutors tutors = db.Tutors.Find(id);
@@ -141,7 +137,7 @@ namespace projet_dot_net.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                _tutorRepository.Dispose();
             }
             base.Dispose(disposing);
         }
