@@ -153,7 +153,10 @@
     <Compile Include="Controllers\AcademiesController.cs" />
     <Compile Include="Controllers\ClassroomsController.cs" />
     <Compile Include="Controllers\EstablishmentsController.cs" />
+    <Compile Include="Controllers\EvaluationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Repository\EvaluationRepository.cs" />
+    <Compile Include="Repository\IEvaluationRepository.cs" />
     <Compile Include="Controllers\PupilsController.cs" />
     <Compile Include="Controllers\ResultsController.cs" />
     <Compile Include="Controllers\TutorsController.cs" />
@@ -319,6 +322,11 @@
     <Content Include="Views\Years\Details.cshtml" />
     <Content Include="Views\Years\Edit.cshtml" />
     <Content Include="Views\Years\Index.cshtml" />
+    <Content Include="Views\Evaluations\Create.cshtml" />
+    <Content Include="Views\Evaluations\Delete.cshtml" />
+    <Content Include="Views\Evaluations\Details.cshtml" />
+    <Content Include="Views\Evaluations\Edit.cshtml" />
+    <Content Include="Views\Evaluations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

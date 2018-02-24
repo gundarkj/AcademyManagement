@@ -132,6 +132,7 @@ namespace projet_dot_net.Controllers
         public ActionResult DeleteConfirmed(Guid id)
         {
             _establishmentRepository.DeleteEstablishment(id);
+            _establishmentRepository.Save();
             return RedirectToAction("Index");
         }
 
