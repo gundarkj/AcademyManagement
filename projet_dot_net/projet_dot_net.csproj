@@ -216,7 +216,9 @@
     <Compile Include="Repository\AcademyRepository.cs" />
     <Compile Include="Repository\IAcademyRepository.cs" />
     <Compile Include="Repository\IPupilsRepository.cs" />
+    <Compile Include="Repository\ITutorsRepository.cs" />
     <Compile Include="Repository\PupilsRepository.cs" />
+    <Compile Include="Repository\TutorsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />

@@ -7,17 +7,28 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using projet_dot_net.Model;
+using projet_dot_net.Repository;
 
 namespace projet_dot_net.Controllers
 {
     public class TutorsController : Controller
     {
+
+
         private AcademyModel db = new AcademyModel();
+        private ITutorsRepository _tutorRepository;
+        public TutorsController()
+        {
+            this._tutorRepository = new TutorsRepository(new AcademyModel());
+        }
+   
 
         // GET: Tutors
         public ActionResult Index()
         {
-            return View(db.Tutors.ToList());
+            var tutors = from tutor in _tutorRepository.GetTutors()
+                         select tutor;
+                       return View(tutors);
         }
 
         // GET: Tutors/Details/5
@@ -27,7 +38,8 @@ namespace projet_dot_net.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tutors tutors = db.Tutors.Find(id);
+            Tutors tutors = _tutorRepository.GetTutorByID(id);
+            //Tutors tutors = db.Tutors.Find(id);
             if (tutors == null)
             {
                 return HttpNotFound();
@@ -51,8 +63,10 @@ namespace projet_dot_net.Controllers
             if (ModelState.IsValid)
             {
                 tutors.Id = Guid.NewGuid();
-                db.Tutors.Add(tutors);
-                db.SaveChanges();
+                _tutorRepository.InsertTutor(tutors);
+                _tutorRepository.Save();
+                //db.Tutors.Add(tutors);
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -66,7 +80,8 @@ namespace projet_dot_net.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tutors tutors = db.Tutors.Find(id);
+            Tutors tutors = _tutorRepository.GetTutorByID(id);
+            //Tutors tutors = db.Tutors.Find(id);
             if (tutors == null)
             {
                 return HttpNotFound();
@@ -83,8 +98,10 @@ namespace projet_dot_net.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tutors).State = EntityState.Modified;
-                db.SaveChanges();
+                _tutorRepository.UpdateTutor(tutors);
+                _tutorRepository.Save();
+                //db.Entry(tutors).State = EntityState.Modified;
+                //db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(tutors);
@@ -97,7 +114,8 @@ namespace projet_dot_net.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tutors tutors = db.Tutors.Find(id);
+            Tutors tutors = _tutorRepository.GetTutorByID(id);
+            //Tutors tutors = db.Tutors.Find(id);
             if (tutors == null)
             {
                 return HttpNotFound();
@@ -110,9 +128,12 @@ namespace projet_dot_net.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            Tutors tutors = db.Tutors.Find(id);
-            db.Tutors.Remove(tutors);
-            db.SaveChanges();
+            Tutors tutors = _tutorRepository.GetTutorByID(id);
+            _tutorRepository.DeleteTutor(id);
+            _tutorRepository.Save();
+            //Tutors tutors = db.Tutors.Find(id);
+            //db.Tutors.Remove(tutors);
+            //db.SaveChanges();
             return RedirectToAction("Index");
         }
 
