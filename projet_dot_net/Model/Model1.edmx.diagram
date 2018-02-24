@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b41b8a766a6143389ad0e81198b5fc6a" Name="Diagram1">
+        <EntityTypeShape EntityType="Academy_Model.Academies" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academy_Model.Classrooms" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academy_Model.Cycles" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academy_Model.Establishments" Width="1.5" PointX="6" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academy_Model.Evaluations" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academy_Model.Levels" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academy_Model.Periods" Width="1.5" PointX="6" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academy_Model.Pupils" Width="1.5" PointX="5.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academy_Model.Results" Width="1.5" PointX="10.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academy_Model.Tutors" Width="1.5" PointX="1.375" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academy_Model.Users" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Academy_Model.Years" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="Academy_Model.FK_Establishments_Academies" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Classrooms_Establishments" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Classrooms_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Classrooms_Years" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Evaluations_Classrooms" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Pupils_Classrooms" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Levels_Cycles" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Establishments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Evaluations_Periods" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Evaluations_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Results_Evaluations" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Pupils_Levels" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Periods_Years" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Pupils_Tutors" ManuallyRouted="false" />
+        <AssociationConnector Association="Academy_Model.FK_Results_Pupils" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
