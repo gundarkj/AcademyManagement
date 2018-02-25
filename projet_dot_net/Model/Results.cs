@@ -11,12 +11,16 @@ namespace projet_dot_net.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Results
     {
         public System.Guid Id { get; set; }
+        [Required(ErrorMessage = "the Evaluation is required")]
         public System.Guid Evaluation_Id { get; set; }
+        [Required(ErrorMessage = "the Pupils is required")]
         public System.Guid Pupil_Id { get; set; }
+        [Required(ErrorMessage = "the Note is required")]
         public double Note { get; set; }
     
         public virtual Evaluations Evaluations { get; set; }

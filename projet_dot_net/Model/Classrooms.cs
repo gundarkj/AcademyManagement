@@ -11,7 +11,8 @@ namespace projet_dot_net.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Classrooms
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,13 +23,20 @@ namespace projet_dot_net.Model
         }
     
         public System.Guid Id { get; set; }
+        [Required(ErrorMessage = "the Title is required")]
+        [StringLength(100)]
         public string Title { get; set; }
+        [Required(ErrorMessage = "the User is required")]
         public System.Guid User_Id { get; set; }
+        [Required(ErrorMessage = "the Year is required")]
         public System.Guid Year_Id { get; set; }
+        [Required(ErrorMessage = "the Establishment is required")]
         public System.Guid Establishment_Id { get; set; }
-    
+
         public virtual Establishments Establishments { get; set; }
+
         public virtual Users Users { get; set; }
+   
         public virtual Years Years { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Evaluations> Evaluations { get; set; }

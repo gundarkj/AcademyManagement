@@ -11,7 +11,8 @@ namespace projet_dot_net.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Years
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,8 +21,8 @@ namespace projet_dot_net.Model
             this.Classrooms = new HashSet<Classrooms>();
             this.Periods = new HashSet<Periods>();
         }
-    
         public System.Guid Id { get; set; }
+        [Required(ErrorMessage = "the Year is required")]
         public int Year { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
