@@ -21,9 +21,6 @@ namespace projet_dot_net.Controllers
         }
 
 
-    
- 
-
         // GET: Pupils
         public ActionResult Index()
         {

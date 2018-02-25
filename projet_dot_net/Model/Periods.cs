@@ -11,7 +11,8 @@ namespace projet_dot_net.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Periods
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,8 +22,13 @@ namespace projet_dot_net.Model
         }
     
         public System.Guid Id { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
         public System.DateTime Begin { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
         public System.DateTime End { get; set; }
+        [Required]
         public System.Guid Year_Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

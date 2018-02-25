@@ -11,7 +11,8 @@ namespace projet_dot_net.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Establishments
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,11 +22,17 @@ namespace projet_dot_net.Model
         }
     
         public System.Guid Id { get; set; }
+        [Required(ErrorMessage = "the Name is required")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "the Address is required")]
         public string Address { get; set; }
+        [Required(ErrorMessage = "the PostCode is required")]
         public string PostCode { get; set; }
+        [Required(ErrorMessage = "the Town is required")]
         public string Town { get; set; }
+        [Required(ErrorMessage = "the User is required")]
         public System.Guid User_Id { get; set; }
+        [Required(ErrorMessage = "the Academie is required")]
         public System.Guid Academie_Id { get; set; }
     
         public virtual Academies Academies { get; set; }

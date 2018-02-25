@@ -11,7 +11,8 @@ namespace projet_dot_net.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Pupils
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,17 +20,26 @@ namespace projet_dot_net.Model
         {
             this.Results = new HashSet<Results>();
         }
-    
+
         public System.Guid Id { get; set; }
+        [Required(ErrorMessage = "the FirstName is required")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "the LastName is required")]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "the Sex is required")]
         public short Sex { get; set; }
+        [Required(ErrorMessage = "the BirthdayDate is required")]
+        [DataType(DataType.Date)]
         public System.DateTime BirthdayDate { get; set; }
+        [Required(ErrorMessage = "the State is required")]
         public short State { get; set; }
+        [Required(ErrorMessage = "the Tutor is required")]
         public System.Guid Tutor_Id { get; set; }
+        [Required(ErrorMessage = "the Classroom is required")]
         public System.Guid Classroom_Id { get; set; }
+        [Required(ErrorMessage = "the Level is required")]
         public System.Guid Level_Id { get; set; }
-    
+
         public virtual Classrooms Classrooms { get; set; }
         public virtual Levels Levels { get; set; }
         public virtual Tutors Tutors { get; set; }

@@ -11,7 +11,8 @@ namespace projet_dot_net.Model
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Tutors
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +22,22 @@ namespace projet_dot_net.Model
         }
     
         public System.Guid Id { get; set; }
+        [Required(ErrorMessage = "the LastName is required")]
         public string LastName { get; set; }
+        [Required(ErrorMessage = "the Firstname is required")]
         public string FirstName { get; set; }
+        [Required(ErrorMessage = "the Adresse is required")]
         public string Address { get; set; }
+        [Required(ErrorMessage = "the Postcode is required")]
         public string PostCode { get; set; }
+        [Required(ErrorMessage = "the town is required")]
         public string Town { get; set; }
+        [Required(ErrorMessage ="the phone number is required")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"^[+33.]?([0-9]{11})$", ErrorMessage = "Not a valid Phone number")]
         public string Tel { get; set; }
+        [Required(ErrorMessage = "The email address is required")]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Mail { get; set; }
         public string Comment { get; set; }
     
