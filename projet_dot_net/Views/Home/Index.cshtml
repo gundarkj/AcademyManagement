@@ -1,21 +1,109 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Accueil";
 }
 
-<div class="jumbotron">
-    <h1>PROJECT ASP .NET M2 G.I.L</h1>
-    <h2>Academy Management </h2>
+<header class="masthead text-center text-white d-flex">
+    <div class="container my-auto">
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <h1 class="text-uppercase">
+                    <strong>Academy Manager</strong>
+                </h1>
+                <hr>
+            </div>
+            <div class="col-lg-8 mx-auto">
+                <p class="text-faded mb-5">L'application incontournable qui permet de gérer les académies Françaises en quelques clics seulement !</p>
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">En savoir plus</a>
+            </div>
+        </div>
     </div>
+</header>
 
-<div class="row">
-    <div>
-        @Html.ActionLink("List of Academies", "Index", "Academies")<br />
-        @Html.ActionLink("List of Users", "Index", "Users")<br />
-        @Html.ActionLink("List of Tutors", "Index", "Tutors")<br />
-        @Html.ActionLink("List of Classrooms", "Index", "Classrooms")<br />
-        @Html.ActionLink("List of Establishments", "Index", "Establishments")<br />
-        @Html.ActionLink("List of Pupils", "Index", "Pupils")<br />
-        @Html.ActionLink("List of Evaluations", "Index", "Evaluations")
+<section class="bg-primary" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-heading text-white">Objectifs de l'application</h2>
+                <hr class="light my-4">
+                <p class="text-faded mb-4">Cette application a été développée par 2 étudiants en master Génie Informatique Logicielle proposé par l'université de Rouen Normandie en France, elle permet de gérer la totalité des académies qui relèvent de la tutelle du ministère de l'éducation nationale française. <br /> Ceci rentre dans le cadre d'un projet de développement en Asp .Net</p>
+                <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Voir les services proposés par l'application</a>
+            </div>
+        </div>
     </div>
- 
-</div>
+</section>
+
+<section id="services">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">A votre service !</h2>
+                <hr class="my-4">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="fa fa-4x fa-building text-primary mb-3 sr-icons"></i>
+                    <h3 class="mb-3">Académies</h3>
+                    <p class="text-muted mb-0">Gérez les académies en un clic !</p>
+                    @Html.ActionLink("Cliquez ici", "Index", "Academies")
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="fa fa-4x fa-briefcase text-primary mb-3 sr-icons"></i>
+                    <h3 class="mb-3">Etablissements</h3>
+                    <p class="text-muted mb-0">Gérez les établissements en moins d'une !</p>
+                    @Html.ActionLink("Cliquez ici", "Index", "Establishments")
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="fa fa-4x fa-book text-primary mb-3 sr-icons"></i>
+                    <h3 class="mb-3">Salles de classe</h3>
+                    <p class="text-muted mb-0">Les salles de classe au bout d'un seul clic !</p>
+                    @Html.ActionLink("Cliquez ici", "Index", "Classrooms")
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="fa fa-4x fa-users text-primary mb-3 sr-icons"></i>
+                    <h3 class="mb-3">Personnel</h3>
+                    <p class="text-muted mb-0">La gestion du personnel simplifiée comme jamais !</p>
+                    @Html.ActionLink("Cliquez ici", "Index", "Pupils")
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<section id="contact" class="bg-dark text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="section-heading">Contactez-nous</h2>
+                <hr class="my-4">
+                <p class="mb-5">Nous sommes 2 étudiants de l'université de Rouen, contactez-nous aux adresses suivantes:</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 ml-auto text-center">
+                <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
+                <p>
+                    <a href="mailto:juba.tidaf@gmail.com">juba.tidaf@gmail.com</a> <br />
+                    <a href="#">Github</a>
+                </p>
+            </div>
+            <div class="col-lg-4 mr-auto text-center">
+                <i class="fa fa-envelope-o fa-3x mb-3 sr-contact"></i>
+                <p>
+                    <a href="gfl@acial.fr">gfl@acial.fr</a> <br />
+                    <a href="https://github.com/ghilesfeghoul">Github</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
