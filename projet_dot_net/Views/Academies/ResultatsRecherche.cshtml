@@ -1,0 +1,21 @@
+﻿@model projet_dot_net.Model.Academies
+<p>Vue partielle : @DateTime.Now.ToLongTimeString()</p>
+<p>Résultats de la recherche</p>
+@if (Model.ListAcademieRechercher.Count == 0)
+{
+    <p>Pas de résultat</p>
+}
+else
+{
+    <table>
+        <tr>
+            <th>Nom</th>
+        </tr>
+        @foreach (var resto in Model.ListAcademieRechercher)
+        {
+            <tr>
+                <td>@resto.Name</td>
+            </tr>
+        }
+    </table>
+}

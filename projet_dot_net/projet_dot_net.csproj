@@ -155,6 +155,7 @@
     <Compile Include="Controllers\EstablishmentsController.cs" />
     <Compile Include="Controllers\EvaluationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Model\RechercheViewModel.cs" />
     <Compile Include="Repository\EvaluationRepository.cs" />
     <Compile Include="Repository\IEvaluationRepository.cs" />
     <Compile Include="Controllers\PupilsController.cs" />
@@ -257,9 +258,13 @@
     <Content Include="Model\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -327,6 +332,8 @@
     <Content Include="Views\Evaluations\Details.cshtml" />
     <Content Include="Views\Evaluations\Edit.cshtml" />
     <Content Include="Views\Evaluations\Index.cshtml" />
+    <Content Include="Views\Academies\Recherche.cshtml" />
+    <Content Include="Views\Academies\ResultatsRecherche.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -342,7 +349,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

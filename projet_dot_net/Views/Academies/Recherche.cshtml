@@ -1,0 +1,22 @@
+﻿@model projet_dot_net.Model.Academies
+@{
+    ViewBag.Title = "Chercher un restaurant";
+}
+
+@using (Ajax.BeginForm("ResultatsRecherche", new AjaxOptions
+{
+    HttpMethod = "GET",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "resultats",
+}))
+{
+    @Html.TextBoxFor(m => m.Recherche);
+    <input type="submit" value="Rechercher" />
+    <p>Vue principale : @DateTime.Now.ToLongTimeString()</p>
+
+    <div id="resultats">
+        @{Html.RenderAction("ResultatsRecherche", new { rechercheViewModel = Model });
+        }
+    </div>
+            }
+<script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.js"></script>

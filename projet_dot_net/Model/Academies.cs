@@ -25,8 +25,13 @@ namespace projet_dot_net.Model
         [Required(ErrorMessage ="the Name is required")]
         [StringLength(100)]
         public string Name { get; set; }
-    
+
+        public string Recherche { get; set; }
+        public List<Academies> ListAcademieRechercher { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Establishments> Establishments { get; set; }
+
+
+     
     }
 }

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using projet_dot_net.Model;
 using projet_dot_net.Repository;
+using System.Dynamic;
 
 namespace projet_dot_net.Controllers
 {
@@ -27,6 +28,19 @@ namespace projet_dot_net.Controllers
                         select academy;
             return View(academies);
             //return View(db.Academies.ToList());
+        }
+        public ActionResult Recherche(Academies rechercheViewModel)
+        {
+            return View(rechercheViewModel);
+        }
+
+        public ActionResult ResultatsRecherche(Academies rechercheViewModel)
+        {
+            if (!string.IsNullOrWhiteSpace(rechercheViewModel.Recherche))
+                rechercheViewModel.ListAcademieRechercher = _academyRepository.GetAcademy().Where(r => r.Name.IndexOf(rechercheViewModel.Recherche, StringComparison.CurrentCultureIgnoreCase) >= 0).ToList();
+            else
+                rechercheViewModel.ListAcademieRechercher = new List<Academies>();
+            return PartialView(rechercheViewModel);
         }
 
         // GET: Academies/Details/5
