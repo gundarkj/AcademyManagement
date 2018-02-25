@@ -20,12 +20,20 @@ namespace projet_dot_net
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js",
-                      "~/Scripts/respond.js"));
+                      "~/Content/creative/vendor/jquery/jquery.min.js",
+                      "~/Content/creative/vendor/bootstrap/js/bootstrap.bundle.min.js",
+                      "~/Content/creative/vendor/jquery-easing/jquery.easing.min.js",
+                      "~/Content/creative/vendor/scrollreveal/scrollreveal.min.js",
+                      "~/Content/creative/vendor/magnific-popup/jquery.magnific-popup.min.js",
+                      "~/Content/creative/js/creative.min.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/creative/vendor/bootstrap/css/bootstrap.min.css",
+                      "~/Content/creative/vendor/font-awesome/css/font-awesome.min.css",
+                      "~/Content/creative/vendor/magnific-popup/magnific-popup.css",
+                      "~/Content/creative/css/creative.min.css"
+                      ));
         }
     }
 }
